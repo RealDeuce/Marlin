@@ -452,11 +452,11 @@
 //#define TEMP_SENSOR_1_AS_REDUNDANT
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
-#define TEMP_RESIDENCY_TIME      10 // (seconds) Time to wait for hotend to "settle" in M109
+#define TEMP_RESIDENCY_TIME     10  // (seconds) Time to wait for hotend to "settle" in M109
 #define TEMP_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
 
-#define TEMP_BED_RESIDENCY_TIME  10 // (seconds) Time to wait for bed to "settle" in M190
+#define TEMP_BED_RESIDENCY_TIME 10  // (seconds) Time to wait for bed to "settle" in M190
 #define TEMP_BED_WINDOW          1  // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_BED_HYSTERESIS      3  // (°C) Temperature proximity considered "close enough" to the target
 
@@ -510,9 +510,9 @@
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
     // CR10-V3
-    #define DEFAULT_Kp 19.47
-    #define DEFAULT_Ki 1.59
-    #define DEFAULT_Kd 59.40
+    #define DEFAULT_Kp 16.06
+    #define DEFAULT_Ki 1.04
+    #define DEFAULT_Kd 61.85
   #endif
 #endif // PIDTEMP
 
