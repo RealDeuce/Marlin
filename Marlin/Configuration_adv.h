@@ -1853,7 +1853,8 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MINIMUM_STEPPER_POST_DIR_DELAY 650
+// E-Stall work-around...
+#define MINIMUM_STEPPER_POST_DIR_DELAY 200
 //#define MINIMUM_STEPPER_PRE_DIR_DELAY 650
 
 /**
