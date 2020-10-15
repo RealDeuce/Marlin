@@ -836,6 +836,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
+// Enabling this triggers E-Stall at high print/retraction speeds.
 //#define S_CURVE_ACCELERATION
 
 //===========================================================================
