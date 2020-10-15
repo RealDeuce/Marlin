@@ -697,8 +697,7 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-// E-Stall workaround
-#define E0_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE TMC2208_STANDALONE
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -837,7 +836,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
