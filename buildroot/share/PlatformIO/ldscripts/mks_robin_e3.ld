@@ -1,3 +1,5 @@
+_ZN9__gnu_cxx27__verbose_terminate_handlerEv = abort;
+
 MEMORY
 {
   ram (rwx) : ORIGIN = 0x20000000, LENGTH = 48K - 40
