@@ -670,7 +670,8 @@
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING ENABLED(CR10V2_BLTOUCH) // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING ENABLED(CR10V2_BLTOUCH) // Set to true to invert the logic of the probe.
+// TODO: Docs say set to false... original was true...
+#define Z_MIN_PROBE_ENDSTOP_INVERTING DISABLED(CR10V2_BLTOUCH) // Set to true to invert the logic of the probe.
 
 /**
  * Stepper Drivers
@@ -872,7 +873,7 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
-//#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
+//#define Z_MIN_PROBE_PIN PB1 // Pin 32 is the RAMPS defaultPB1 is the MKS Robin E3D default, disabled if uses Z stop
 
 /**
  * Probe Type
