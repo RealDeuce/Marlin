@@ -97,7 +97,7 @@
 #define SHOW_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Bootscreen.h on startup.
-//#define SHOW_CUSTOM_BOOTSCREEN
+#define SHOW_CUSTOM_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
 #define CUSTOM_STATUS_SCREEN_IMAGE
@@ -1364,7 +1364,7 @@
  * Include a guided procedure if manual probing is enabled.
  */
 #if ENABLED(CR10V2_BLTOUCH)
-  //#define LCD_BED_LEVELING
+  #define LCD_BED_LEVELING
 #endif
 
 #if ENABLED(LCD_BED_LEVELING)
@@ -1374,7 +1374,7 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-//#define LEVEL_BED_CORNERS
+#define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
   #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
