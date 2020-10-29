@@ -160,7 +160,7 @@ void GcodeSuite::G35() {
 
       serialprintPGM(PSTR("Turn "));
       serialprintPGM((char *)pgm_read_ptr(&tramming_point_name[i]));
-      SERIAL_ECHOPAIR(" ", (screw_thread & 1) == (adjust > 0) ? "Counter-Clockwise" : "Clockwise",
+      SERIAL_ECHOPAIR(" ", (screw_thread & 1) == (adjust > 0) ? "CCW" : "CW",
              " by ", abs(full_turns), " turns");
       if (minutes) SERIAL_ECHOPAIR(" and ", abs(minutes), " minutes");
       if (ENABLED(REPORT_TRAMMING_MM)) SERIAL_ECHOPAIR(" (", -diff, "mm)");
