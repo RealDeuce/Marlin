@@ -22,13 +22,6 @@
 #pragma once
 
 /**
- * Creality CD-10 V3 options
- */
-
-// Is the BLTouch option installed?
-#define CR10V2_BLTOUCH
-
-/**
  * Configuration.h
  *
  * Basic settings such as:
@@ -95,7 +88,7 @@
 #define SHOW_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Bootscreen.h on startup.
-#define SHOW_CUSTOM_BOOTSCREEN
+//#define SHOW_CUSTOM_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
 #define CUSTOM_STATUS_SCREEN_IMAGE
@@ -127,7 +120,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -494,7 +487,7 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
   //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
@@ -506,9 +499,10 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp 16.06
-    #define DEFAULT_Ki 1.04
-    #define DEFAULT_Kd 61.85
+    // Calibrated at 245°C
+    #define DEFAULT_Kp 20.78
+    #define DEFAULT_Ki 1.85
+    #define DEFAULT_Kd 58.31
   #endif
 #endif // PIDTEMP
 
@@ -547,10 +541,10 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  // CR10-V3 24V 240W (80 degree cal)
-  #define DEFAULT_bedKp 291.52
-  #define DEFAULT_bedKi 51.57
-  #define DEFAULT_bedKd 1098.53
+  // Calibrated at 90°C
+  #define DEFAULT_bedKp 209.05
+  #define DEFAULT_bedKi 32.19
+  #define DEFAULT_bedKd 904.97
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -668,9 +662,7 @@
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-// TODO: Docs say set to false... original was true...
-//#define Z_MIN_PROBE_ENDSTOP_INVERTING ENABLED(CR10V2_BLTOUCH) // Set to true to invert the logic of the probe.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // Set to true to invert the logic of the probe.
 
 /**
  * Stepper Drivers
@@ -872,7 +864,7 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
-#define Z_MIN_PROBE_PIN PA2
+#define Z_MIN_PROBE_PIN PB1
 
 /**
  * Probe Type
@@ -910,9 +902,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-#if ENABLED(CR10V2_BLTOUCH)
-  #define BLTOUCH
-#endif
+#define BLTOUCH
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -1052,9 +1042,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 5
 
 // Enable the M48 repeatability test to test probe accuracy
-#if ENABLED(CR10V2_BLTOUCH)
-  #define Z_MIN_PROBE_REPEATABILITY_TEST
-#endif
+#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -1109,13 +1097,13 @@
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
 #define INVERT_E0_DIR true
-#define INVERT_E1_DIR true
-#define INVERT_E2_DIR true
-#define INVERT_E3_DIR true
-#define INVERT_E4_DIR true
-#define INVERT_E5_DIR true
-#define INVERT_E6_DIR true
-#define INVERT_E7_DIR true
+#define INVERT_E1_DIR false
+#define INVERT_E2_DIR false
+#define INVERT_E3_DIR false
+#define INVERT_E4_DIR false
+#define INVERT_E5_DIR false
+#define INVERT_E6_DIR false
+#define INVERT_E7_DIR false
 
 // @section homing
 
@@ -1249,9 +1237,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#if ENABLED(CR10V2_BLTOUCH)
-  #define AUTO_BED_LEVELING_BILINEAR
-#endif
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1259,9 +1245,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-#if ENABLED(CR10V2_BLTOUCH)
-  //#define RESTORE_LEVELING_AFTER_G28
-#endif
+//#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1361,9 +1345,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#if ENABLED(CR10V2_BLTOUCH)
-  #define LCD_BED_LEVELING
-#endif
+#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1408,9 +1390,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-#if ENABLED(CR10V2_BLTOUCH)
-  #define Z_SAFE_HOMING
-#endif
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT 47 // X point for Z homing
